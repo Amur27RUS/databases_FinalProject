@@ -15,6 +15,8 @@ import BasesChangeCommanderDone from "./BasesChangeCommanderDone";
 import BasesAddNewSat from "./BasesAddNewSat";
 import BasesAddNewSatDone from "./BasesAddNewSatDone";
 import LaunchesDeleteDone from "./LaunchesDeleteDone";
+import LaunchEditDone from "./LaunchEditDone";
+import LaunchesAddNewDone from "./LaunchesAddNewDone";
 
 function Monitor(){
     return(
@@ -55,8 +57,9 @@ function Monitor(){
                     return <LaunchEdit launchId={id}/>
                 }}/>
             <Route path={'/launchesDeleteDone'} exact component={LaunchesDeleteDone}/>
-
+            <Route path={'/editLaunchDone'} exact component={LaunchEditDone}/>
             <Route path={'/addNewLaunch'} exact component={LaunchesAddNew}/>
+            <Route path={'/launchesAddNewDone'} exact component={LaunchesAddNewDone}/>
 
             <Route path={'/sphere_info'} exact component={SphereInfo}/>
 

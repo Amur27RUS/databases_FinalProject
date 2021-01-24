@@ -11,7 +11,7 @@ function Bases(){
     const changeCommander = (baseId) => <><Link to={'/bases/changeCommanders/' + baseId}>Сменить командира</Link><br/><br/><Link to={'/bases/addNewSat/' + baseId}>Добавить спутник</Link></>;
 
     useState(async ()=>{
-        await axios.get('https://dyson3.herokuapp.com/planets').then(res => {
+        await axios.get('https://localhost:8080/planets').then(res => {
             setPlanets(res.data);
         })
     }, []);

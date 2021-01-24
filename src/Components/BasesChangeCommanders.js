@@ -10,7 +10,7 @@ function BasesChangeCommanders(baseId){
     const [redirect, setRedirect] = useState(false);
 
     useEffect(()=>{
-        axios.get('https://dyson3.herokuapp.com/bases').then(res =>{
+        axios.get('https://localhost:8080/bases').then(res =>{
             setBases(res.data);
         })
     }, []);
@@ -37,7 +37,7 @@ function BasesChangeCommanders(baseId){
                 <h2>Изменить на:</h2>
                 <Input className={'inputForTerminal'} onChange={changeCommanderhandler}/> <Button variant="outlined" color="secondary" onClick={() =>{
                     if(newCommander !== -1 && newCommander.trim() !== ''){
-                        axios.post('https://dyson3.herokuapp.com/newCommander', {baseId: baseId.baseId, name: newCommander}).then(res => {
+                        axios.post('https://localhost:8080/newCommander', {baseId: baseId.baseId, name: newCommander}).then(res => {
                             if(res.status === 200){
                                 setRedirect(true);
                             }

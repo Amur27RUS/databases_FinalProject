@@ -12,7 +12,7 @@ function Groups(groupId){
 
 
     useEffect(()=>{
-        axios.post('https://dyson3.herokuapp.com/satellites', {"id": groupId.groupId}).then(res => {
+        axios.post('https://localhost:8080/satellites', {"id": groupId.groupId}).then(res => {
             setSatellites(res.data);
         })
 
@@ -25,7 +25,7 @@ function Groups(groupId){
         setOfflineSats(offlineSatsCount);
         setOnlineSats(satellites.length - offlineSatsCount);
 
-        axios.post('https://dyson3.herokuapp.com/group', {"id": groupId.groupId}).then(res =>{
+        axios.post('https://localhost:8080/group', {"id": groupId.groupId}).then(res =>{
             setGroup(res.data);
         });
     }, [satellites]);
@@ -41,7 +41,7 @@ function Groups(groupId){
 
                         <Grid container spacing={3}>
                             {satellites.map(sat =>{
-                                if(sat.status === 'online') {
+                                if(sat.status === 'active') {
                                     return <Card className={'groupCell'} mode={'outline'}>{`Спутник ${sat.id} (${sat.name})`}</Card>
                                 }
                             })}

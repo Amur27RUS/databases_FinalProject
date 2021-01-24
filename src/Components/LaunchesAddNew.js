@@ -3,10 +3,13 @@ import '../App.css';
 import {Button, MenuItem, Select} from "@material-ui/core";
 import {Input} from "@vkontakte/vkui";
 import axios from "axios";
+import {Redirect} from "react-router-dom";
 
 function LaunchesAddNew(){
     const[basesAndSats, setBasesAndSats] = useState([]);
     const[groups, setGroups] = useState([]);
+
+    const[redirect, setRedirect] = useState(false);
 
     const[selectedBase, setSelectedBase] = useState(-1);
     const[selectedSatellite, setSelectedSatellite] = useState(-1);
@@ -17,11 +20,11 @@ function LaunchesAddNew(){
     const today = new Date(now);
 
     useEffect(()=>{
-        axios.get('https://dyson3.herokuapp.com/bases/freeSatt').then(res =>{
+        axios.get('https://localhost:8080/bases/freeSatt').then(res =>{
             setBasesAndSats(res.data);
         })
 
-        axios.post('https://dyson3.herokuapp.com/groups', {"sphre_id": 1}).then(res =>{
+        axios.post('https://localhost:8080/groups', {"sphre_id": 1}).then(res =>{
             setGroups(res.data);
         });
     }, []);
@@ -46,6 +49,8 @@ function LaunchesAddNew(){
 
     return(
         <div>
+            {redirect &&
+            <Redirect to={'/launchesAddNewDone'}/>}
             <div className="piece output">
                 <div>
                     <h1>Добавление нового запуска:</h1>
@@ -88,8 +93,8 @@ function LaunchesAddNew(){
                 <br/>
                 <Button variant="outlined" color="secondary" onClick={()=>{
                     if(selectedBase !== -1 && selectedSatellite !== -1 && selectedDate !== -1 && selectedGroup !== -1){
-                        axios.post('https://dyson3.herokuapp.com/launch/add', {date: selectedDate, satelliteId: selectedSatellite, baseId: selectedBase, groupId: selectedGroup}).then(res =>{
-                            console.log(res);
+                        axios.post('https://localhost:8080/launch/add', {date: selectedDate, satelliteId: selectedSatellite, baseId: selectedBase, groupId: selectedGroup}).then(res =>{
+                            setRedirect(true);
                         })
                     }
                 }}>Добавить запуск</Button>

@@ -6,10 +6,10 @@ function SphereInfo(){
     const [sphereInfo, setSphereInfo] = useState({});
 
     useEffect(() => {
-        axios.get('https://dyson3.herokuapp.com/sphere').then(res => {
+        axios.get('https://localhost:8080/sphere').then(res => {
             setSphereInfo(res.data);
         });
-    });
+    }, []);
 
     return(
         <div>
