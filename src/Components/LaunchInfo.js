@@ -9,7 +9,7 @@ function LaunchInfo(launchId){
     const [redirect, setRedirect] = useState(false);
 
     useEffect(()=>{
-        axios.post('https://localhost:8080/launch', {"id": launchId.launchId}).then(res => {
+        axios.post('http://localhost:8080/launch', {"id": launchId.launchId}).then(res => {
             setLaunch(res.data);
         });
     }, []);
@@ -32,7 +32,7 @@ function LaunchInfo(launchId){
                 <p>{`Запуск в группу: ${launch.groupId}`}</p>
                 <br/>
                 <Button variant="outlined" color="secondary" onClick={()=>{
-                    axios.post('https://localhost:8080/launch/delete', {id: launchId.launchId, date: launch.date, satelliteId: launch.satelliteId, baseId: launch.baseId, groupId: launch.groupId}).then(res => {
+                    axios.post('http://localhost:8080/launch/delete', {id: launchId.launchId, date: launch.date, satelliteId: launch.satelliteId, baseId: launch.baseId, groupId: launch.groupId}).then(res => {
                         if(res.status === 200){
                             setRedirect(true);
                         }

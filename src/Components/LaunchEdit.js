@@ -17,11 +17,11 @@ function Launches(launchId){
 
 
     useEffect(()=>{
-        axios.post('https://localhost:8080/launch', {id: launchId.launchId}).then(res =>{
+        axios.post('http://localhost:8080/launch', {id: launchId.launchId}).then(res =>{
             setLaunch(res.data);
         });
 
-        axios.post('https://localhost:8080/groups', {"sphre_id": 1}).then(res =>{
+        axios.post('http://localhost:8080/groups', {"sphre_id": 1}).then(res =>{
             setGroups(res.data);
         });
     }, []);
@@ -61,15 +61,15 @@ function Launches(launchId){
                 <br/>
                 <Button variant="outlined" color="secondary" onClick={()=>{
                     if(newDate !== -1 && newGroup !== -1){
-                        axios.post('https://localhost:8080/launch/update', {id: launchId.launchId, baseId: launch.baseId, satelliteId: launch.satelliteId, date: newDate, groupId: newGroup}).then(res =>{
+                        axios.post('http://localhost:8080/launch/update', {id: launchId.launchId, baseId: launch.baseId, satelliteId: launch.satelliteId, date: newDate, groupId: newGroup}).then(res =>{
                             setRedirect(true);
                         })
                     }else if(newDate === -1 && newGroup !== -1){
-                        axios.post('https://localhost:8080/launch/update', {id: launchId.launchId, baseId: launch.baseId, satelliteId: launch.satelliteId, groupId: newGroup, date: launch.date}).then(res =>{
+                        axios.post('http://localhost:8080/launch/update', {id: launchId.launchId, baseId: launch.baseId, satelliteId: launch.satelliteId, groupId: newGroup, date: launch.date}).then(res =>{
                             setRedirect(true);
                         })
                     }else if(newGroup === -1 && newDate !== -1){
-                        axios.post('https://localhost:8080/launch/update', {id: launchId.launchId, baseId: launch.baseId, satelliteId: launch.satelliteId, date: newDate, groupId: launch.groupId}).then(res =>{
+                        axios.post('http://localhost:8080/launch/update', {id: launchId.launchId, baseId: launch.baseId, satelliteId: launch.satelliteId, date: newDate, groupId: launch.groupId}).then(res =>{
                             setRedirect(true);
                         })
                     }else{

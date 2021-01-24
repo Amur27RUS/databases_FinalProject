@@ -12,7 +12,7 @@ function BasesAddNewSat(baseID){
     const [redirect, setRedirect] = useState(false);
 
     useEffect(() => {
-        axios.post('https://localhost:8080/groups', {"sphre_id": 1}).then(res =>{
+        axios.post('http://localhost:8080/groups', {"sphre_id": 1}).then(res =>{
             setGroups(res.data);
         });
     }, []);
@@ -57,7 +57,7 @@ function BasesAddNewSat(baseID){
                         console.log(baseID.baseId);
                         console.log(selectedGroup);
                         console.log(selectedName);
-                        axios.post('https://localhost:8080/satellite/add', {base_id: baseID.baseId, group_id: selectedGroup, energy_amount: 11, status: 'not active', name: selectedName, lifetime: 11}).then(res =>{
+                        axios.post('http://localhost:8080/satellite/add', {base_id: baseID.baseId, group_id: selectedGroup, energy_amount: 11, status: 'not active', name: selectedName, lifetime: 11}).then(res =>{
                             if(res.status === 200){
                                 setRedirect(true);
                             }

@@ -6,7 +6,7 @@ function SphereInfo(){
     const [sphereInfo, setSphereInfo] = useState({});
 
     useEffect(() => {
-        axios.get('https://localhost:8080/sphere').then(res => {
+        axios.get('http://localhost:8080/sphere').then(res => {
             setSphereInfo(res.data);
         });
     }, []);

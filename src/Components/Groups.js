@@ -9,7 +9,7 @@ function Groups(){
     const [groups, setGroups] = useState([]);
 
     useEffect(()=>{
-        axios.post('https://localhost:8080/groups', {"sphre_id": 1}).then(res =>{
+        axios.post('http://localhost:8080/groups', {"sphre_id": 1}).then(res =>{
             setGroups(res.data);
         });
 

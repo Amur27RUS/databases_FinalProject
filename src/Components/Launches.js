@@ -14,7 +14,7 @@ function Launches(){
     useEffect(()=>{
         // let launchId = new URLSearchParams();
         // launchId.append('id', '1');
-        axios.get('https://localhost:8080/launches').then(res =>{
+        axios.get('http://localhost:8080/launches').then(res =>{
             setLaunches(res.data);
         })
     }, []);

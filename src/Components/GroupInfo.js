@@ -12,7 +12,7 @@ function Groups(groupId){
 
 
     useEffect(()=>{
-        axios.post('https://localhost:8080/satellites', {"id": groupId.groupId}).then(res => {
+        axios.post('http://localhost:8080/satellites', {"id": groupId.groupId}).then(res => {
             setSatellites(res.data);
         })
 
@@ -25,7 +25,7 @@ function Groups(groupId){
         setOfflineSats(offlineSatsCount);
         setOnlineSats(satellites.length - offlineSatsCount);
 
-        axios.post('https://localhost:8080/group', {"id": groupId.groupId}).then(res =>{
+        axios.post('http://localhost:8080/group', {"id": groupId.groupId}).then(res =>{
             setGroup(res.data);
         });
     }, [satellites]);

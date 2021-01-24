@@ -20,11 +20,11 @@ function LaunchesAddNew(){
     const today = new Date(now);
 
     useEffect(()=>{
-        axios.get('https://localhost:8080/bases/freeSatt').then(res =>{
+        axios.get('http://localhost:8080/bases/freeSatt').then(res =>{
             setBasesAndSats(res.data);
         })
 
-        axios.post('https://localhost:8080/groups', {"sphre_id": 1}).then(res =>{
+        axios.post('http://localhost:8080/groups', {"sphre_id": 1}).then(res =>{
             setGroups(res.data);
         });
     }, []);
@@ -93,7 +93,7 @@ function LaunchesAddNew(){
                 <br/>
                 <Button variant="outlined" color="secondary" onClick={()=>{
                     if(selectedBase !== -1 && selectedSatellite !== -1 && selectedDate !== -1 && selectedGroup !== -1){
-                        axios.post('https://localhost:8080/launch/add', {date: selectedDate, satelliteId: selectedSatellite, baseId: selectedBase, groupId: selectedGroup}).then(res =>{
+                        axios.post('http://localhost:8080/launch/add', {date: selectedDate, satelliteId: selectedSatellite, baseId: selectedBase, groupId: selectedGroup}).then(res =>{
                             setRedirect(true);
                         })
                     }
